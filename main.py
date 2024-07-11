@@ -1,5 +1,6 @@
 import os
 import uuid
+from datetime import time
 
 import telebot
 from PIL import Image, ImageDraw, ImageFont
@@ -160,7 +161,7 @@ def result(message):
         unique_id = str(uuid.uuid4())
         path = f'{club}.jpg'
         image_name = f'{club}_text_{unique_id}.jpg'
-        font_path = f'dinamo.TTF'
+        font_path = f'dinamo.ttf'
         if club == 'dinamo_w':
             text_color = (1, 83, 183)
         else:
@@ -184,5 +185,11 @@ def result(message):
         bot.register_next_step_handler(message, result)
 
 
-bot.polling()
+running = True
 
+while running:
+    try:
+        bot.polling(none_stop=True)
+    except Exception as e:
+        print(f"Что то там{e}")
+        time.sleep(1)

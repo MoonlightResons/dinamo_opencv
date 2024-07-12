@@ -1,6 +1,6 @@
 import os
 import uuid
-from datetime import time
+import time
 
 import telebot
 from PIL import Image, ImageDraw, ImageFont
@@ -19,7 +19,7 @@ def main_keyboard():
     button1 = types.InlineKeyboardButton(text='Белая Форма', callback_data='dinamo_w')
     button2 = types.InlineKeyboardButton(text='Синяя Форма', callback_data='dinamo_blue')
     button3 = types.InlineKeyboardButton(text='Зеленая Форма', callback_data='dinamo_g')
-    button4 = types.InlineKeyboardButton(text='Черня Форма', callback_data='dinamo_black')
+    button4 = types.InlineKeyboardButton(text='Черная Форма', callback_data='dinamo_black')
 
     main.add(button1, button2)
     main.add(button3, button4)
@@ -184,12 +184,12 @@ def result(message):
         bot.send_message(message.chat.id, "Неверный формат. Укажите номер от 0 до 99:")
         bot.register_next_step_handler(message, result)
 
-
 running = True
 
 while running:
     try:
         bot.polling(none_stop=True)
     except Exception as e:
-        print(f"Что то там{e}")
+        print(f"Exception occurred: {e}")
         time.sleep(1)
+
